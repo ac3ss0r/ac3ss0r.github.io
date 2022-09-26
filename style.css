@@ -17,7 +17,7 @@ height: 5px;
 }
 #screen {
 height: 100px;
-font-size: 3.5vh;
+font-size: 1rem;
 position: relative;
 height: 67.5vmin;
 border: 30px solid transparent;
