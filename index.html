@@ -1,40 +1,71 @@
 <html>
-   <head>
-      <!-- -->
-      <title>Acessor's website - homepage</title>
-      <link type="Image/x-icon" href="favicon.ico" rel="icon">
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-      <link rel="stylesheet" href="style.css">
-	  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-      <meta charset="UTF-8" />
-   </head>
-   <body>
-      <div id="screen">
-         <div class="crt"></div>
-         <text id="move">2023 г </text><br/>
-         <font size=7wv>Acessor - web portal</font>
-         <br/>
-         <h3>Кодер Java / C# (.NET) / Web, реверсер (Обратная разработка, взлом чужого ПО), дизайнер.</h3>
-         <br/>
-         <div id="border"></div>
-         </br>
-         <a href="about.html"><h3>Обо мне</h3></a>
-         </br>
-         <div id="border"></div>
-         <br/>
-		 <div style="display:table;margin: 0 auto;">
-			<div style="float:left;">
-				<h3>Проекты</h3>
-				<h4><a href="https://github.com/acessors/MCEEAuthBypass" >• MCEAuthBypass</a></h4>
-				<h4><a href="https://github.com/acessors/WMI-Displayer" >• WMI Displayer</a></h4>
+	<head>
+		<!-- -->
+		<title>Acessor's website - homepage</title>
+		<link type="Image/x-icon" href="favicon.ico" rel="icon" />
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+		<link rel="stylesheet" href="style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<div id="screen">
+			<div class="crt"></div>
+			<text id="move">[<text id="RU" style="color:#00EE20">RU</text> / <text id="EN">EN</text>]</text><br />
+			<font id="title" size="7vw">Acessor - главная</font>
+			<br />
+			<h3 id="basic_info">Кодер Java / C# (.NET) / Web, реверсер (Обратная разработка, взлом чужого ПО), дизайнер.</h3>
+			<br />
+			<div id="border"></div>
+			<br />
+			<a href="about.html"><h3 id="about">Обо мне</h3></a>
+			<br />
+			<div id="border"></div>
+			<br />
+			<div style="display:table;margin: 0 auto;">
+				<div style="float:left;">
+					<h3 id="projects">Проекты</h3>
+					<br />
+					<h4><a href="https://github.com/acessors/MCEEAuthBypass">• MCEAuthBypass</a></h4>
+					<h4><a href="https://github.com/acessors/WMI-Displayer">• WMI Displayer</a></h4>
+					<h4><a href="https://github.com/acessors/Il2Cpp-Exploitation-POC">• Il2Cpp Exploitation POC</a></h4>
+					<h4><a href="https://github.com/acessors/frida-il2cpp-agent">• frida-il2cpp-agent</a></h4>
+				</div>
+				<div style="float:left;margin-left:10vw;">
+					<h3 id="contacts">Контакты</h3>
+					<br />
+					<h4><a href="https://github.com/acessors">• Github</a></h4>
+					<h4><a href="https://t.me/netreverser">• Telegram</a></h4>
+					<h4><a href="https://vk.com/acessor">• Vkontakte</a></h4>
+				</div>
 			</div>
-			<div style="float:left;margin-left:10vw;">
-				<h3>Контакты</h3>
-				<h4><a href="https://github.com/acessors">• Github</a></h4>
-				<h4><a href="https://t.me/netreverser">• Telegram</a></h4>
-				<h4><a href="https://vk.com/acessor">• Vkontakte</a></h4>
-			</div>
-		 </div>
-      </div>
-   </body>
+		</div>
+		<script>
+			document.getElementById("move").addEventListener('click', switchLang, false);
+			ruopt = document.getElementById("RU");
+			enopt = document.getElementById("EN")
+			beep = new Audio('beep.mp3')
+
+			current_lang = "RU"
+
+			function switchLang() {
+			beep.play()
+			temp = ruopt.style.color;
+			ruopt.style.color = enopt.style.color; enopt.style.color = temp
+			  switch (current_lang) {
+			      case "RU": setLang(["Acessor - веб портал", "Кодер Java / C# (.NET) / Web, реверсер (Обратная разработка, взлом чужого ПО), дизайнер.", "Обо мне", "Проекты", "Контакты", "Acessor - главная"]); current_lang = "EN"; break;
+			      case "EN": setLang(["Acessor - web portal", "Java / C# (.NET) / C++ / Web Developer, reverse-ingineer, designer", "About me", "Projects", "Contacts", "Acessor - homepage"]); current_lang = "RU"; break;
+			  }
+			}
+
+			function setLang(vals) {
+			  document.getElementById("title").innerHTML= vals[0]
+			  document.getElementById("basic_info").innerHTML= vals[1]
+			  document.getElementById("about").innerHTML= vals[2]
+			  document.getElementById("projects").innerHTML= vals[3]
+			  document.getElementById("contacts").innerHTML= vals[4]
+			  document.title = vals[5]
+			}
+		</script>
+	</body>
 </html>
