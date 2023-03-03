@@ -21,8 +21,8 @@
 			<a href="about.html"><h3 id="about">Обо мне</h3></a>
 			<br />
 			<div id="border"></div>
-			<div style=" display: table;margin: 0 auto;">
-				<div style="float:left;width:30vw;">
+			<div style="display: table;margin:0 auto;">
+				<div style="float:left;width:40vw;">
                     <br />
 					<h3 id="projects">Проекты</h3>
 					<br />
@@ -31,7 +31,7 @@
 					<h4><a href="https://github.com/acessors/Il2Cpp-Exploitation-POC">• Il2Cpp Exploitation POC</a></h4>
 					<h4><a href="https://github.com/acessors/frida-il2cpp-agent">• frida-il2cpp-agent</a></h4>
 				</div>
-				<div style="float:left;width:30vw;">
+				<div style="float:left;width:40vw;">
                     <br />
 					<h3 id="contacts">Контакты</h3>
 					<br />
@@ -42,31 +42,7 @@
 			</div>
 		</div>
 		<script>
-			document.getElementById("move").addEventListener('click', switchLang, false);
-			ruopt = document.getElementById("RU");
-			enopt = document.getElementById("EN")
-			beep = new Audio('beep.mp3')
-
-			current_lang = "RU"
-
-			function switchLang() {
-			beep.play()
-			temp = ruopt.style.color;
-			ruopt.style.color = enopt.style.color; enopt.style.color = temp
-			  switch (current_lang) {
-			      case "RU": setLang(["Acessor - веб портал", "Кодер Java / C# (.NET) / Web, реверсер (Обратная разработка, взлом чужого ПО), дизайнер.", "Обо мне", "Проекты", "Контакты", "Acessor - главная"]); current_lang = "EN"; break;
-			      case "EN": setLang(["Acessor - web portal", "Java / C# (.NET) / C++ / Web Developer, reverse-ingineer, designer", "About me", "Projects", "Contacts", "Acessor - homepage"]); current_lang = "RU"; break;
-			  }
-			}
-
-			function setLang(vals) {
-			  document.getElementById("title").innerHTML= vals[0]
-			  document.getElementById("basic_info").innerHTML= vals[1]
-			  document.getElementById("about").innerHTML= vals[2]
-			  document.getElementById("projects").innerHTML= vals[3]
-			  document.getElementById("contacts").innerHTML= vals[4]
-			  document.title = vals[5]
-			}
+			function switchLang(){switch(beep.play(),temp=ruopt.style.color,ruopt.style.color=enopt.style.color,enopt.style.color=temp,current_lang){case"EN":setLocale(["Acessor - веб портал","Кодер Java / C# (.NET) / Web, реверсер (Обратная разработка, взлом чужого ПО), дизайнер.","Обо мне","Проекты","Контакты","Acessor - главная"]),current_lang="RU";break;case"RU":setLocale(["Acessor - web portal","Java / C# (.NET) / C++ / Web Developer, reverse-ingineer, designer","About me","Projects","Contacts","Acessor - homepage"]),current_lang="EN"}}function setLocale(e){document.getElementById("title").innerHTML=e[0],document.getElementById("basic_info").innerHTML=e[1],document.getElementById("about").innerHTML=e[2],document.getElementById("projects").innerHTML=e[3],document.getElementById("contacts").innerHTML=e[4],document.title=e[5]}document.getElementById("move").addEventListener("click",switchLang,!1),ruopt=document.getElementById("RU"),enopt=document.getElementById("EN"),beep=new Audio("beep.mp3"),current_lang="RU";
 		</script>
 	</body>
 </html>
