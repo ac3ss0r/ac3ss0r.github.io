@@ -1,7 +1,6 @@
 <html>
 	<head>
-		<!-- -->
-		<title>Acessor's website - homepage</title>
+		<title>Acessor - главная</title>
 		<link type="Image/x-icon" href="favicon.ico" rel="icon" />
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 		<link rel="stylesheet" href="style.css" />
@@ -12,37 +11,95 @@
 		<div id="screen">
 			<div class="crt"></div>
 			<text id="move">[<text id="RU" style="color:#00EE20">RU</text> / <text id="EN">EN</text>]</text><br />
-			<font id="title" size="7vw">Acessor - главная</font>
-			<br />
-			<h3 id="basic_info">Кодер Java / C# (.NET) / Web, реверсер (Обратная разработка, взлом чужого ПО), дизайнер.</h3>
-			<br />
-			<div id="border"></div>
-			<br />
-			<a href="about.html"><h3 id="about">Обо мне</h3></a>
-			<br />
-			<div id="border"></div>
+			<h1 id="title">Acessor - главная</h1>
+			<br/><h3 id="bio">Кодер Java / C++ / C# (.NET) / Web, реверсер (Обратная разработка, взлом чужого ПО), дизайнер.</h3>
+			<br/><div id="border"></div><br/>
+			<a href="https://github.com/acessors"><div id="about_entry">
+                  <h3 id="about">Обо мне</h3>
+            </div></a>
+			<br/><div id="border"></div>
 			<div style="display: table;margin:0 auto;">
 				<div style="float:left;width:40vw;">
-                    <br />
-					<h3 id="projects">Проекты</h3>
-					<br />
-					<h4><a href="https://github.com/acessors/MCEEAuthBypass">• MCEAuthBypass</a></h4>
-					<h4><a href="https://github.com/acessors/WMI-Displayer">• WMI Displayer</a></h4>
-					<h4><a href="https://github.com/acessors/Il2Cpp-Exploitation-POC">• Il2Cpp Exploitation POC</a></h4>
-					<h4><a href="https://github.com/acessors/frida-il2cpp-agent">• frida-il2cpp-agent</a></h4>
+                    <br/><h3 id="projects">Проекты</h3>
+					<br/>
+					<a href="https://github.com/acessors/ZMemory"><div id="about_entry">
+						<h3>ZMemory</h3>
+						<h5>a C++ library / template for patching process memory on unix systems (including android)</h5>
+                    </div></a>
+                    <a href="https://github.com/acessors/MCEEAuthBypass"><div id="about_entry">
+						<h3>MCEAuthBypass</h3>
+						<h5>Minecraft education edition auth bypass for Windows 7/8/10 by memory pointerscan patching</h5>
+                    </div></a>
+                    <a href="https://github.com/acessors/WMI-Displayer"><div id="about_entry">
+						<h3>WMI Displayer</h3>
+						<h5>A small .NET program that I've made for getting Windows Management Instrumentation (WMI) classes and values easily.</h5>
+                    </div></a>
+                    <a href="https://github.com/acessors/frida-il2cpp-agent"><div id="about_entry">
+						<h3>frida-il2cpp-agent</h3>
+						<h5>Frida Il2cpp agent example using frida-il2cpp-bridge library.</h5>
+                    </div></a>
+                    <a href="https://github.com/acessors/Il2Cpp-Exploitation-POC"><div id="about_entry">
+						<h3>Il2Cpp Exploitation POC</h3>
+						<h5>A lua Game Guardian library that supports patching Il2cpp games by offsets or HEX signatures</h5>
+                    </div></a>
 				</div>
 				<div style="float:left;width:40vw;">
-                    <br />
-					<h3 id="contacts">Контакты</h3>
-					<br />
-					<h4><a href="https://github.com/acessors">• Github</a></h4>
-					<h4><a href="https://t.me/netreverser">• Telegram</a></h4>
-					<h4><a href="https://vk.com/acessor">• Vkontakte</a></h4>
+                    <br/><h3 id="contacts">Контакты</h3>
+					<br/>
+					<a href="https://github.com/acessors"><div id="about_entry">
+						<h3>GitHub</h3>
+                    </div></a>
+                    <a href="https://t.me/netreverser"><div id="about_entry">
+						<h3>Telegram</h3>
+                    </div></a>
+                    <a href="https://discordapp.com/users/908688934672924673"><div id="about_entry">
+						<h3>Discord</h3>
+                    </div></a>
 				</div>
 			</div>
 		</div>
 		<script>
-			function switchLang(){switch(beep.play(),temp=ruopt.style.color,ruopt.style.color=enopt.style.color,enopt.style.color=temp,current_lang){case"EN":setLocale(["Acessor - веб портал","Кодер Java / C# (.NET) / Web, реверсер (Обратная разработка, взлом чужого ПО), дизайнер.","Обо мне","Проекты","Контакты","Acessor - главная"]),current_lang="RU";break;case"RU":setLocale(["Acessor - web portal","Java / C# (.NET) / C++ / Web Developer, reverse-ingineer, designer","About me","Projects","Contacts","Acessor - homepage"]),current_lang="EN"}}function setLocale(e){document.getElementById("title").innerHTML=e[0],document.getElementById("basic_info").innerHTML=e[1],document.getElementById("about").innerHTML=e[2],document.getElementById("projects").innerHTML=e[3],document.getElementById("contacts").innerHTML=e[4],document.title=e[5]}document.getElementById("move").addEventListener("click",switchLang,!1),ruopt=document.getElementById("RU"),enopt=document.getElementById("EN"),beep=new Audio("beep.mp3"),current_lang="RU";
-		</script>
+	    var lang = { 
+             ru: { 
+               title: "Acessor - веб портал",
+               bio: "Кодер Java / C++ / C# (.NET) / Web, реверсер (Обратная разработка, взлом чужого ПО), дизайнер.",
+               about: "Обо мне",
+               projects: "Проекты", 
+               contacts: "Контакты"
+             }, 
+             en: { 
+               title: "Acessor - web portal",
+               bio: "Java /  C++ / C# (.NET) / Web Developer, reverse-ingineer, designer",
+               about: "About me",
+               projects: "Projects", 
+               contacts: "Contacts"
+             }
+        };
+        
+        document.getElementById("move").addEventListener("click", switchLang, !1);
+        ruopt = document.getElementById("RU"), enopt = document.getElementById("EN");
+        beep = new Audio("beep.mp3")
+        var current_lang = lang.ru
+			
+	    function switchLang() {
+		    beep.play()
+            temp = ruopt.style.color
+            ruopt.style.color = enopt.style.color
+            enopt.style.color = temp, current_lang
+            switch (current_lang) {
+            case lang.ru: 
+                  setLocale(lang.en), current_lang = lang.en; break;
+            case lang.en:
+                  setLocale(lang.ru), current_lang = lang.ru
+           }
+          }
+          function setLocale(lang) {
+                 document.title = lang.title
+                 document.getElementById("title").innerHTML = lang.title
+                 document.getElementById("bio").innerHTML = lang.bio
+                 document.getElementById("projects").innerHTML = lang.projects
+                 document.getElementById("contacts").innerHTML = lang.contacts
+}
+</script>
 	</body>
 </html>

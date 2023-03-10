@@ -4,9 +4,16 @@ src: url(font.ttf);
 }
 * {
 margin: auto;
+text-decoration: none;
 font-family: console, 'Comic Sans MS', cursive;
 text-align: center;
 color: white;
+}
+#about_entry {
+border-radius: 5px;
+margin-top: 5px;
+border: 2px solid white;
+width: 35vw
 }
 #move {
 text-align: left;
@@ -17,12 +24,12 @@ body {
 background-color: #202020;
 }
 #border {
-margin: 0 65px 0 65px;
+width: 95%;
 background-color: white;
-height: 5px;
+height: 2px;
 }
 #screen {
-font-size: 1.2rem;
+font-size: 3vw;
 position: relative;
 height: 100%;
 border: 30px solid transparent;
