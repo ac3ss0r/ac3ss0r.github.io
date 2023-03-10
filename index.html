@@ -59,6 +59,7 @@
 			</div>
 		</div>
 		<script>
+	
 	    var lang = { 
              ru: { 
                title: "Acessor - веб портал",
@@ -93,13 +94,13 @@
                   setLocale(lang.ru), current_lang = lang.ru
            }
           }
+          
           function setLocale(lang) {
                  document.title = lang.title
-                 document.getElementById("title").innerHTML = lang.title
-                 document.getElementById("bio").innerHTML = lang.bio
-                 document.getElementById("projects").innerHTML = lang.projects
-                 document.getElementById("contacts").innerHTML = lang.contacts
-}
+                 for (let e in lang) {
+                     document.getElementById(e).innerHTML = lang[e]
+                 }
+           }
 </script>
 	</body>
 </html>
