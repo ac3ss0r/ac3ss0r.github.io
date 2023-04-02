@@ -1,66 +1,62 @@
 @font-face {
-font-family: console; 
-src: url(font.ttf); 
+    font-family: console; 
+    src: url(font.ttf); 
 }
 * {
-margin: auto;
-text-decoration: none;
-font-family: console, 'Comic Sans MS', cursive;
-text-align: center;
-color: white;
+    margin: auto;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: console, 'Comic Sans MS', cursive;
+    text-align: center;
+    color: white;
+}
+#content {
+    font-size: 20px;
+    padding: 30px;
 }
 #about_entry {
-border-radius: 5px;
-margin-top: 5px;
-border: 2px solid white;
-width: 35vw
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 2px solid white;
+    width: 35vw
 }
 #move {
-text-align: left;
-display: block;
-padding: 0 65px 0 0;
+    text-align: left;
+    display: block;
+    padding: 0 65px 0 0;
 }
 body {
-background-color: #202020;
+    background-color: black;
 }
 #border {
-width: 95%;
-background-color: white;
-height: 2px;
+    width: 95%;
+    background-color: white;
+    height: 2px;
 }
+
 #screen {
-font-size: 3vw;
-position: relative;
-height: 100%;
-border: 30px solid transparent;
-border-image-source: url(bezel.png);
-border-image-slice: 30 fill;
-border-image-outset: 0;
-overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    border: 30px solid transparent;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(150, 150, 150, 0.3), transparent 80%);
+    border-image-source: url(screen.png);
+    border-image-slice: 30;
+    border-image-outset: 0;
 }
-.crt:after {
-content: " ";
-display: block;
-position: absolute;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-background-image: radial-gradient(rgba(150, 150, 150, 0.3), transparent 80%);
-pointer-events: none;
-}
+
 .crt {
-pointer-events: none;
-width: 100%;
-height: 100%;
-position: absolute;
-background-image: 
-repeating-linear-gradient(0deg, transparent 1rem, black 1.2rem);
-background-size: 200% 200%;
-animation: barberpole 50s linear infinite;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(0deg, transparent 1rem, black 1.2rem);
+    background-size: 200% 200%;
+    animation: barberpole 50s linear infinite;
 }
+
 @keyframes barberpole {
-100% {
-background-position: 100% 100%;
-}
+    100% {
+        background-position: 100% 100%;
+    }
 }
