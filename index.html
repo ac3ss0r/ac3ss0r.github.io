@@ -126,7 +126,7 @@
 			  document.title = lang.title;
 			  for (const e in lang) {
 			    if (Object.prototype.hasOwnProperty.call(lang, e)) {
-			      document.getElementById(e).innerHTML = lange;
+			      document.getElementById(e).innerHTML = lang[e];
 			    }
 			  }
 			}
