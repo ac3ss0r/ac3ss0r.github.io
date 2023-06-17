@@ -10,6 +10,14 @@
     text-align: center;
     color: white;
 }
+#centered {
+    display: table;
+    margin:0 auto;
+}
+#float_container {
+    float:left;
+    width:40vw;
+}
 #content {
     font-size: 20px;
     padding: 30px;
