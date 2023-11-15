@@ -60,7 +60,9 @@ body {
     pointer-events: none;
     background-image: repeating-linear-gradient(0deg, transparent 1rem, black 1.2rem);
     background-size: 200% 200%;
-    animation: barberpole 50s linear infinite;
+    animation: barberpole 1s linear infinite;
+    animation-direction: alternate;
+    animation-duration: 500ms;
 }
 
 @keyframes barberpole {
