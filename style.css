@@ -2,6 +2,11 @@
     font-family: console; 
     src: url(font.ttf); 
 }
+
+body {
+    background-color: black;
+}
+
 * {
     margin: auto;
     text-decoration: none;
@@ -10,32 +15,35 @@
     text-align: center;
     color: white;
 }
+
 #centered {
     display: table;
     margin:0 auto;
 }
+
 #float_container {
     float:left;
     width:40vw;
 }
+
 #content {
     font-size: 20px;
     padding: 30px;
 }
+
 #about_entry {
     border-radius: 5px;
     margin-top: 5px;
     border: 2px solid white;
     width: 35vw
 }
-#move {
+
+#langs {
     text-align: left;
     display: block;
     padding: 0 65px 0 0;
 }
-body {
-    background-color: black;
-}
+
 #border {
     width: 95%;
     background-color: white;
