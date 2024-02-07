@@ -1,177 +1,205 @@
 <html>
+
 <head>
-	<title>Acessor - главная</title>
-	<link type="Image/x-icon" href="favicon.ico" rel="icon" />
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-	<link rel="stylesheet" href="style.css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta charset="UTF-8" />
+    <title>Acessor - главная</title>
+    <link type="Image/x-icon" href="favicon.ico" rel="icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta charset="UTF-8" />
 </head>
+
 <body>
-	<div id="screen">
-		<div class="crt"></div>
-	</div>
-	<div id="content">
-		<text id="langs" onclick="changeLang()">
-			[<text id="RU" class="lang">RU</text> / <text id="EN", class="lang">EN</text>]
-		</text>
-		<br />
-		<h1 id="title">Я - Acessor</h1>
-		<br />
-		<h3 id="bio" style="width: 80vw">Программист C#, C/C++, Java и тд. Реверсер (обратный разработчик) и взломщик ПО. Моддер игр, создатель чит-клиентов и низкоуровнего ПО. Хакер и специалист по ИБ. Дизайнер.</h3>
-		<br />
-		<div id="border"></div>
-		<br />
-		<div id="centered">
-			<div id="float_container"> 
-				<h3 id="about">Обо мне</h3>
-				<br/>
-				<h5 id="skills" style="text-align: left;">
-					- Знание языков: Русский, Английский. Базовое понимание: Французский, Белорусский<br/><br/>
-					- Подробные знания об устройстве ЭВМ, умение работать с Windows, Linux, Android и знание их особенностей<br/><br/>
-					- Умение работать с ЯП C#, C/C++, Java. При необходимости с JS, Python и любыми другими<br/><br/>
-					- Более 4-х лет разработки ПО<br/><br/>
-					- Познания в реверсе (обратной разработке), криптографии и взломе ПО<br/><br/>
-					- Умение качественно обрабатывать фото и видео материалы, разрабатывать дизайн и монтировать
-				</h5>
-			</div>
-			<div id="float_container"> 
-				<h3 id="more">Больше ресурсов</h3>
-				<br/>
-				<h5 id="todo">// TODO add some articles</h5>
-			</div>
-		</div>
-		<br/>
-		<div id="border"></div>
-		<div id="centered">
-			<div id="float_container">
-				<br />
-				<h3 id="projects">Проекты</h3>
-				<br />
-				<a href="https://github.com/ac3ss0r/DroidFrida">
-					<div id="about_entry">
-						<h3>DroidFrida</h3>
-						<h5>An android app for injecting frida agents on rooted devices without PC including a code editor and settings for comfortable usage</h5>
-					</div>
-				</a>
-				<a href="https://github.com/ac3ss0r/ZMemory">
-					<div id="about_entry">
-						<h3>ZMemory</h3>
-						<h5>A C++ library / template for patching process memory on unix systems (including android)</h5>
-					</div>
-				</a>
-				<a href="https://github.com/ac3ss0r/MCEEAuthBypass">
-					<div id="about_entry">
-						<h3>MCEAuthBypass</h3>
-						<h5>Minecraft education edition auth bypass for Windows 7/8/10 by memory pointerscan patching</h5>
-					</div>
-				</a>
-				<a href="https://github.com/ac3ss0r/WMI-Displayer">
-					<div id="about_entry">
-						<h3>WMI Displayer</h3>
-						<h5>A small .NET program that I've made for getting Windows Management Instrumentation (WMI) classes and values easily.</h5>
-					</div>
-				</a>
-				<a href="https://github.com/ac3ss0r/frida-il2cpp-agent">
-					<div id="about_entry">
-						<h3>frida-il2cpp-agent</h3>
-						<h5>Frida Il2cpp agent example using frida-il2cpp-bridge library.</h5>
-					</div>
-				</a>
-				<a href="https://github.com/ac3ss0r/Il2Cpp-Exploitation-POC">
-					<div id="about_entry">
-						<h3>Il2Cpp Exploitation POC</h3>
-						<h5>A lua Game Guardian library that supports patching Il2cpp games by offsets or HEX signatures</h5>
-					</div>
-				</a>
-			</div>
-			<div id="float_container">
-				<br />
-				<h3 id="contacts">Контакты</h3>
-				<br />
-				<a href="https://github.com/ac3ss0r">
-					<div id="about_entry">
-						<h3>GitHub</h3>
-					</div>
-				</a>
-				<a href="https://t.me/ac3ss0r">
-					<div id="about_entry">
-						<h3>Telegram</h3>
-					</div>
-				</a>
-				<a href="https://discord.gg/bBPs6PGWkK">
-					<div id="about_entry">
-						<h3>Discord</h3>
-					</div>
-				</a>
-			</div>
-		</div>
-	</div>
-	<script>
+    <div class="retro_screen_overlay">
+        <div class="retro_console_effect"></div>
+    </div>
+    <div class="screen_content">
+        <text class="console_corner" id="langs" onclick="switchLang()">
+            [<text id="RU" class="lang">RU</text> / <text id="EN" , class="lang">EN</text>]
+        </text>
+        <br />
+        <div class="console_content">
+            <h1 id="title">Я - Acessor</h1>
 
-		// To simflify language switching templates are used
+            <br />
 
-		const locale = {
-			"RU": {
-				"title": "Привет, я - Acessor",
-				"bio": "Программист C#, C/C++, Java и тд. Реверсер (обратный разработчик) и взломщик ПО. Моддер игр, создатель чит-клиентов и низкоуровнего ПО. Хакер и специалист по ИБ. Дизайнер.",
-				"skills": "- Знание языков: Русский, Английский. Базовое понимание: Французский, Белорусский<br/><br/>\
+            <h3 id="bio">Программист C#, C/C++, Java и тд. Реверсер (обратный разработчик) и взломщик ПО. Моддер игр,
+                создатель чит-клиентов и низкоуровнего ПО. Хакер и специалист по ИБ. Дизайнер.</h3>
+            <br />
+
+            <div class="border"></div>
+
+            <br />
+            <div class="section_block">
+                <div class="side_block">
+                    <h3 id="about">Обо мне</h3>
+                    <br />
+                    <h5 id="skills">
+                        - Знание языков: Русский, Английский. Базовое понимание: Французский, Белорусский<br /><br />
+                        - Подробные знания об устройстве ЭВМ, умение работать с Windows, Linux, Android и знание их
+                        особенностей<br /><br />
+                        - Умение работать с ЯП C#, C/C++, Java. При необходимости с JS, Python и любыми
+                        другими<br /><br />
+                        - Более 4-х лет разработки ПО<br /><br />
+                        - Познания в реверсе (обратной разработке), криптографии и взломе ПО<br /><br />
+                        - Умение качественно обрабатывать фото и видео материалы, разрабатывать дизайн и монтировать
+                    </h5>
+                </div>
+                <div class="side_block">
+                    <h3 id="more">Больше ресурсов</h3>
+                    <br />
+                    <h5 id="todo">// TODO add some articles</h5>
+                </div>
+            </div>
+            <br />
+
+            <div class="border"></div>
+
+            <div class="section_block">
+                <div class="side_block">
+                    <br />
+                    <h3>Проекты</h3>
+                    <br />
+                    <a href="https://github.com/ac3ss0r/obfusheader.h">
+                        <div class="about_entry">
+                            <h3>Obfusheader.h</h3>
+                            <h5>Obfusheader.h is a portable header file for C++14 compile-time obfuscation.</h5>
+                        </div>
+                    </a>
+                    <a href="https://github.com/ac3ss0r/ZMemory">
+                        <div class="about_entry">
+                            <h3>ZMemory</h3>
+                            <h5>A C++ library / template for patching process memory on unix systems (including android)
+                            </h5>
+                        </div>
+                    </a>
+                    <a href="https://github.com/ac3ss0r/DroidFrida">
+                        <div class="about_entry">
+                            <h3>DroidFrida</h3>
+                            <h5>An android app for injecting frida agents on rooted devices without PC including a code
+                                editor and settings for comfortable usage</h5>
+                        </div>
+                    </a>
+                    <a href="https://github.com/ac3ss0r/Il2Cpp-Exploitation-POC">
+                        <div class="about_entry">
+                            <h3>Il2Cpp Exploitation POC</h3>
+                            <h5>A lua Game Guardian library that supports patching Il2cpp games by offsets or HEX
+                                signatures</h5>
+                        </div>
+                    </a>
+                    <a href="https://github.com/ac3ss0r/frida-il2cpp-agent">
+                        <div class="about_entry">
+                            <h3>frida-il2cpp-agent</h3>
+                            <h5>Frida Il2cpp agent example using frida-il2cpp-bridge library.</h5>
+                        </div>
+                    </a>
+                    <a href="https://github.com/ac3ss0r/MCEEAuthBypass">
+                        <div class="about_entry">
+                            <h3>MCEAuthBypass</h3>
+                            <h5>Minecraft education edition auth bypass for Windows 7/8/10 by memory pointerscan
+                                patching</h5>
+                        </div>
+                    </a>
+                    <a href="https://github.com/ac3ss0r/WMI-Displayer">
+                        <div class="about_entry">
+                            <h3>WMI Displayer</h3>
+                            <h5>A small .NET program that I've made for getting Windows Management Instrumentation (WMI)
+                                classes and values easily.</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="side_block">
+                    <br />
+                    <h3 id="contacts">Контакты</h3>
+                    <br />
+                    <a href="https://github.com/ac3ss0r">
+                        <div class="about_entry">
+                            <h3>GitHub</h3>
+                        </div>
+                    </a>
+                    <a href="https://t.me/ac3ss0r">
+                        <div class="about_entry">
+                            <h3>Telegram</h3>
+                        </div>
+                    </a>
+                    <a href="https://discord.gg/bBPs6PGWkK">
+                        <div class="about_entry">
+                            <h3>Discord</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        // To simflify language switching templates are used
+
+        const locale = {
+            "RU": {
+                "title": "Привет, я - Acessor",
+                "bio": "Программист C#, C/C++, Java и тд. Реверсер (обратный разработчик) и взломщик ПО. Моддер игр, создатель чит-клиентов и низкоуровнего ПО. Хакер и специалист по ИБ. Дизайнер.",
+                "skills": "- Знание языков: Русский, Английский. Базовое понимание: Французский, Белорусский<br/><br/>\
 				- Подробные знания об устройстве ЭВМ, умение работать с Windows, Linux, Android и знание их особенностей<br/><br/>\
 				- Умение работать с ЯП C#, C/C++, Java. При необходимости с JS, Python и любыми другими<br/><br/>\
 				- Более 4-х лет разработки ПО<br/><br/>\
 				- Познания в реверсе (обратной разработке), криптографии и взломе ПО<br/><br/>\
 				- Умение качественно обрабатывать фото и видео материалы, разрабатывать дизайн и монтировать",
-				"about": "Обо мне",
-				"more": "Больше ресурсов",
-				"todo": "// TODO добавить статьи",
-				"projects": "Проекты",
-				"contacts": "Контакты"
-			},
-			"EN": {
-				"title": "Hello, I'm Acessor",
-				"bio": "Software developer skilled in C#, C/C++, Java, and other programming languages. Reverse engineer and software hacker. Game modder, creator of cheat clients, and low-level software developer. Hacker and cybersecurity specialist. Designer.",
-				"skills": "- Known languages: Russian, English. Basic understanding: French, Belarus.<br/><br/>\
+                "about": "Обо мне",
+                "more": "Больше ресурсов",
+                "todo": "// TODO добавить статьи",
+                "projects": "Проекты",
+                "contacts": "Контакты"
+            },
+            "EN": {
+                "title": "Hello, I'm Acessor",
+                "bio": "Software developer skilled in C#, C/C++, Java, and other programming languages. Reverse engineer and software hacker. Game modder, creator of cheat clients, and low-level software developer. Hacker and cybersecurity specialist. Designer.",
+                "skills": "- Known languages: Russian, English. Basic understanding: French, Belarus.<br/><br/>\
 				- In-depth knowledge of computer architecture, ability to work with Windows, Linux, Android and familiarity with their specificities.<br/><br/>\
 				- Proficient in programming languages such as C#, C/C++, Java. Familiar with JS, Python, and other languages<br/><br/>\
 				- Over 4 years of software development experience.<br/><br/>\
 				- Knowledge of reverse engineering, cryptography, and software hacking.<br/><br/>\
 				- Skilled in photo and video editing, design.",
-				"about": "About me",
-				"more": "More resources",
-				"todo": "// TODO add articles",
-				"projects": "Projects",
-				"contacts": "Contacts"
-			}
-		};
+                "about": "About me",
+                "more": "More resources",
+                "todo": "// TODO add articles",
+                "projects": "Projects",
+                "contacts": "Contacts"
+            }
+        };
 
-		var current_lang = getUserLang();
-		const beep = new Audio("beep.mp3");
+        var current_lang = getBrowserLang();
+        const beep = new Audio("beep.mp3");
 
         window.onload = updateInfo(); // Pre-translate page
-        
+
         // Change the language
-        function changeLang() {
+        function switchLang() {
+            // Picks the next language from the locale list
             let langs = Object.keys(locale);
             let index = langs.indexOf(current_lang);
             current_lang = langs[(index + 1) % langs.length];
+            // Update the webpage 
             updateInfo();
-        	beep.play(); // Beep
+            beep.play();
         }
-        
+
         // Translate & set selected
         function updateInfo() {
-            setActivated(current_lang)
+            setLanguageActivated(current_lang)
             setLocale(current_lang)
         }
-        
-        function setActivated(id) {
+
+        // Activates a language and deactivates all other ones
+        function setLanguageActivated(id) {
             let active = document.getElementsByClassName("lang"),
-            element = document.getElementById(id);
+                element = document.getElementById(id);
             for (let i = 0; i < active.length; i++)
                 active[i].style.color = "inherit";
             element.style.color = "#00EE20";
         }
-        
+
+
         function setLocale(lang) {
             let new_lang = locale[lang]
             document.title = new_lang.title;
@@ -181,13 +209,15 @@
                     element.innerHTML = new_lang[key]
             }
         }
-        
-        // Not russian = english
-        function getUserLang() {
-            let userLang = navigator.language || navigator.userLanguage;
-            return (userLang.toLowerCase().includes("ru")) ? "RU" : "EN";
+
+        // Not russian = english ;)
+        function getBrowserLang() {
+            return (navigator.language ||
+                navigator.userLanguage ||
+                navigator.userAgentData).toUpperCase().includes("RU") ? "RU" : "EN";
         }
 
-	</script>
+    </script>
 </body>
+
 </html>

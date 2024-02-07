@@ -1,56 +1,85 @@
 @font-face {
-    font-family: console; 
-    src: url(font.ttf); 
+    font-family: console;
+    src: url(lucida-bsod.ttf);
+}
+
+/* Global stuff */
+
+* {
+    margin: auto;
+    box-sizing: border-box;
+    font-family: console, 'Comic Sans MS';
+    text-align: center;
+    color: white;
+    text-decoration: none;
 }
 
 body {
     background-color: black;
-}
-
-* {
-    margin: auto;
     text-decoration: none;
-    box-sizing: border-box;
-    font-family: console, 'Comic Sans MS', cursive;
-    text-align: center;
-    color: white;
 }
 
-#centered {
+::selection {
+    background: white;
+    color: black;
+}
+
+/* Universal blocks */
+
+
+.section_block {
     display: table;
-    margin:0 auto;
+    margin: 0 auto;
+    width: 100%;
 }
 
-#float_container {
-    float:left;
-    width:40vw;
+.side_block {
+    float: left;
+    width: 50%;
 }
 
-#content {
+.screen_content {
+    background-color: black;
     font-size: 20px;
     padding: 30px;
+    display: table;
+    margin: 0 auto;
+    width: 100%;
+    /*max-width: 1980px;*/
 }
 
-#about_entry {
-    border-radius: 5px;
-    margin-top: 5px;
-    border: 2px solid white;
-    width: 35vw
-}
-
-#langs {
+.console_corner {
     text-align: left;
     display: block;
     padding: 0 65px 0 0;
 }
 
-#border {
+.console_content {
+    padding: 0 20px 0 20px;
+    max-width: 1000px;
+}
+
+.about_entry {
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 2px solid white;
+    margin: 10px;
+    text-align: left;
+}
+
+.border {
     width: 95%;
     background-color: white;
     height: 2px;
 }
 
-#screen {
+/* Specific blocks */
+
+#skills {
+    text-align: start;
+}
+
+.retro_screen_overlay {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -62,11 +91,11 @@ body {
     border-image-outset: 0;
 }
 
-.crt {
+.retro_console_effect {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    background-image: repeating-linear-gradient(0deg, transparent 1rem, black 1.2rem);
+    background-image: repeating-linear-gradient(0deg, transparent 0.1rem, black 1.2rem);
     background-size: 200% 200%;
     animation: barberpole 1s linear infinite;
     animation-direction: alternate;
@@ -77,9 +106,4 @@ body {
     100% {
         background-position: 100% 100%;
     }
-}
-
-::selection {
-   background: white;
-   color: black;
 }
