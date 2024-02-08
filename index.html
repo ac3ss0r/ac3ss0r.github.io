@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Acessor - главная</title>
     <link type="Image/x-icon" href="favicon.ico" rel="icon" />
@@ -135,36 +136,36 @@
     </div>
     <script>
 
-    var current_lang = getBrowserLang();
-    const beep = new Audio("beep.mp3");
+        var current_lang = getBrowserLang();
+        const beep = new Audio("beep.mp3");
 
-    // Animations
+        // Animations
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    async function typeText(id, text) {
-        let speed = 100, cursorState = false;
-        for (let i = 0; i < text.length; i++) {
-            let currentFrame = ""
-            // Draw current frame
-            for(let b=0; b<=i; b++)
-                currentFrame+=text.charAt(b)
-            if (cursorState && i != text.length - 1)
-                currentFrame+="|";
-            cursorState=!cursorState;
-            // Apply it
-            document.getElementById(id).innerHTML = currentFrame;
-            await sleep(speed);
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
         }
-    }
 
-    window.onload = function () {
-        let title = getTranslationForLocale(current_lang, "title");
-        typeText("title", title)
-        updateInfo();
-    }
+        async function typeText(id, text) {
+            let speed = 100, cursorState = false;
+            for (let i = 0; i < text.length; i++) {
+                let currentFrame = ""
+                // Draw current frame
+                for (let b = 0; b <= i; b++)
+                    currentFrame += text.charAt(b)
+                if (cursorState && i != text.length - 1)
+                    currentFrame += "|";
+                cursorState = !cursorState;
+                // Apply it
+                document.getElementById(id).innerHTML = currentFrame;
+                await sleep(speed);
+            }
+        }
+
+        window.onload = function () {
+            let title = getTranslationForLocale(current_lang, "title");
+            typeText("title", title)
+            updateInfo();
+        }
 
         // To simflify language switching templates are used
 
@@ -228,7 +229,7 @@
         }
 
         function getTranslationForLocale(lang, id) {
-            return  (lang in locale && id in locale[lang]) ? locale[lang][id] : undefined
+            return (lang in locale && id in locale[lang]) ? locale[lang][id] : undefined
         }
 
         function setLocale(lang) {

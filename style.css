@@ -115,6 +115,26 @@ body {
     pointer-events: none;
 }
 
+/* Attempt to use an image for gradient. Didn't solve the optimization 
+issue. 
+
+.retro_console_effect_new {
+    position: absolute;
+    background-image: url(gradient.png);
+    width: 100%;
+    height: 100%;
+    animation: barberpole 1s linear infinite;
+    background-size:contain;
+    animation-duration: 500ms;
+    image-rendering: crisp-edges;
+    image-rendering: -moz-crisp-edges;        
+    image-rendering: -o-crisp-edges;          
+    image-rendering: -webkit-optimize-contrast; 
+    -ms-interpolation-mode: nearest-neighbor;  
+}
+
+*/
+
 .retro_console_effect {
     position: fixed;
     width: 100%;
