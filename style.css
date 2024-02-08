@@ -67,6 +67,10 @@ body {
     text-align: left;
 }
 
+.about_entry:hover {
+    background-color: rgb(53, 53, 53)
+}
+
 .border {
     width: 95%;
     background-color: white;
@@ -79,27 +83,48 @@ body {
     text-align: start;
 }
 
-.retro_screen_overlay {
+/* Retro screen thingy */
+
+.old_screen_overlay {
+    background-image: url(test_mask.png);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    opacity: 15%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+}
+
+.retro_screen_border {
     position: fixed;
     width: 100%;
     height: 100%;
     border: 30px solid transparent;
-    pointer-events: none;
-    background-image: radial-gradient(rgba(150, 150, 150, 0.3), transparent 80%);
-    border-image-source: url(screen.png);
+    border-image-source: url(screen_transparent.png);
     border-image-slice: 30;
     border-image-outset: 0;
+    pointer-events: none;
+}
+
+.retro_screen_glowing {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(150, 150, 150, 0.4), transparent 100%);
+    pointer-events: none;
 }
 
 .retro_console_effect {
+    position: fixed;
     width: 100%;
     height: 100%;
-    pointer-events: none;
     background-image: repeating-linear-gradient(0deg, transparent 1rem, black 1.2rem);
     background-size: 200% 200%;
     animation: barberpole 1s linear infinite;
     animation-direction: alternate;
     animation-duration: 500ms;
+    pointer-events: none;
 }
 
 @keyframes barberpole {

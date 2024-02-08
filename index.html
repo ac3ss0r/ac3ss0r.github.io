@@ -10,9 +10,11 @@
 </head>
 
 <body>
-    <div class="retro_screen_overlay">
-        <div class="retro_console_effect"></div>
-    </div>
+    <div class="retro_screen_glowing"></div>
+    <div class="retro_console_effect"></div>
+    <div class="old_screen_overlay"></div>
+    <div class="retro_screen_border"></div>
+
     <div class="screen_content">
         <text class="console_corner" id="langs" onclick="switchLang()">
             [<text id="RU" class="lang">RU</text> / <text id="EN" , class="lang">EN</text>]
@@ -133,6 +135,37 @@
     </div>
     <script>
 
+    var current_lang = getBrowserLang();
+    const beep = new Audio("beep.mp3");
+
+    // Animations
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function typeText(id, text) {
+        let speed = 100, cursorState = false;
+        for (let i = 0; i < text.length; i++) {
+            let currentFrame = ""
+            // Draw current frame
+            for(let b=0; b<=i; b++)
+                currentFrame+=text.charAt(b)
+            if (cursorState && i != text.length - 1)
+                currentFrame+="|";
+            cursorState=!cursorState;
+            // Apply it
+            document.getElementById(id).innerHTML = currentFrame;
+            await sleep(speed);
+        }
+    }
+
+    window.onload = function () {
+        let title = getTranslationForLocale(current_lang, "title");
+        typeText("title", title)
+        updateInfo();
+    }
+
         // To simflify language switching templates are used
 
         const locale = {
@@ -168,11 +201,6 @@
             }
         };
 
-        var current_lang = getBrowserLang();
-        const beep = new Audio("beep.mp3");
-
-        window.onload = updateInfo(); // Pre-translate page
-
         // Change the language
         function switchLang() {
             // Picks the next language from the locale list
@@ -199,14 +227,19 @@
             element.style.color = "#00EE20";
         }
 
+        function getTranslationForLocale(lang, id) {
+            return  (lang in locale && id in locale[lang]) ? locale[lang][id] : undefined
+        }
 
         function setLocale(lang) {
-            let new_lang = locale[lang]
-            document.title = new_lang.title;
-            for (const key in new_lang) {
-                let element = document.getElementById(key)
-                if (element)
-                    element.innerHTML = new_lang[key]
+            if (lang in locale) {
+                let new_lang = locale[lang]
+                if ("title" in new_lang)
+                    document.title = new_lang.title
+                for (const id in new_lang) {
+                    let element = document.getElementById(id)
+                    if (element) element.innerHTML = new_lang[id]
+                }
             }
         }
 
