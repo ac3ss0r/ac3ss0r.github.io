@@ -26,7 +26,6 @@ body {
 
 /* Universal blocks */
 
-
 .section_block {
     display: table;
     margin: 0 auto;
@@ -72,7 +71,7 @@ body {
 }
 
 .border {
-    width: 95%;
+    width: 100%;
     background-color: white;
     height: 2px;
 }
