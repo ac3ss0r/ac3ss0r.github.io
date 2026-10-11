@@ -8,6 +8,14 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <script src="html-guard.min.js"></script>
+    <script>
+        HtmlGuard.protections.antiDevTools()
+        HtmlGuard.protections.blockContextMenu()
+        HtmlGuard.protections.blockConsoleOutput()
+        HtmlGuard.protections.blockSelection()
+        HtmlGuard.protections.blockDrag();
+    </script>
 </head>
 <body>
     <div class="retro_screen_glowing"></div>
@@ -72,6 +80,48 @@
             </div>
         </div>
     </div>
+    <div class="custom_cursor" id="customCursor" aria-hidden="true">
+        <img src="cursor.png" alt="" draggable="false" />
+    </div>
+    <script>
+        /* Retro CRT pointer, tracked in the DOM instead of a CSS cursor: url()
+           bitmap so it scales in rem with the rest of the console. */
+        (function initCustomCursor() {
+            // A "(hover: hover) and (pointer: fine)" requirement silently never
+            // activated on some desktop browsers, so only stand down when the
+            // pointer is genuinely coarse (touch) and keep the OS cursor there.
+            if (window.matchMedia("(pointer: coarse)").matches)
+                return;
+            const cursor = document.getElementById("customCursor");
+            const art = cursor && cursor.querySelector("img");
+            if (!art)
+                return;
+            const arm = () => {
+                document.documentElement.classList.add("custom-cursor");
+                let frame = 0, x = 0, y = 0;
+                const paint = () => {
+                    frame = 0;
+                    cursor.style.transform = "translate(" + x + "px, " + y + "px)";
+                };
+                document.addEventListener("pointermove", (event) => {
+                    x = event.clientX;
+                    y = event.clientY;
+                    cursor.classList.add("visible");
+                    if (!frame)
+                        frame = requestAnimationFrame(paint);
+                }, { passive: true });
+                // Otherwise the art sticks to the screen edge after alt-tabbing out.
+                document.addEventListener("mouseleave", () => cursor.classList.remove("visible"));
+                window.addEventListener("blur", () => cursor.classList.remove("visible"));
+            };
+            if (art.complete) {
+                if (art.naturalWidth > 0)
+                    arm();
+            } else {
+                art.addEventListener("load", arm, { once: true });
+            }
+        })();
+    </script>
     <script>
         var api_url = "https://api.github.com/users/ac3ss0r/repos?per_page=100",
             last_fetched_key = "LAST_UPDATE",
@@ -238,13 +288,14 @@
         async function updateLanguageInfo() {
             if (current_lang in locale) {
                 document.documentElement.lang = current_lang.toLowerCase();
-                // Activate the current language visually
+                // Activate the current language visually. The pointer reads the
+                // same --lang-active value, so it can never drift from this color.
                 let active = document.getElementsByClassName("lang");
                 for (let i = 0; i < active.length; i++)
-                    active[i].style.color = "inherit";
+                    active[i].classList.remove("active");
                 let element = document.getElementById(current_lang);
                 if (element)
-                    element.style.color = "#00EE20";
+                    element.classList.add("active");
                 // Update the locale by setting the innerHTML of elements
                 const new_lang = locale[current_lang];
                 Object.keys(new_lang).forEach(id => {
