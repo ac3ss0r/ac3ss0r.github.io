@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8" />
     <title>Acessor - главная</title>
-    <link type="Image/x-icon" href="favicon.ico" rel="icon" />
+    <meta name="description" content="Acessor — программист, реверсер, моддер игр, создатель чит-клиентов и специалист по ИБ." />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta charset="UTF-8" />
 </head>
 <body>
     <div class="retro_screen_glowing"></div>
@@ -16,9 +17,9 @@
     <div class="retro_screen_border"></div>
 
     <div class="screen_content">
-        <text class="console_corner" id="langs">
-            [<text id="RU" class="lang">RU</text> / <text id="EN" , class="lang">EN</text>]
-        </text>
+        <div class="console_corner" id="langs">
+            [<span id="RU" class="lang">RU</span> / <span id="EN" class="lang">EN</span>]
+        </div>
         <br/>
         <div class="console_content">
             <h1 id="title">Я - Acessor</h1>
@@ -72,10 +73,10 @@
         </div>
     </div>
     <script>
-        var api_url = "https://api.github.com/users/ac3ss0r/repos",
-            last_fetched_time = "LAST_UPDATE",
+        var api_url = "https://api.github.com/users/ac3ss0r/repos?per_page=100",
+            last_fetched_key = "LAST_UPDATE",
             storage_key = "STORAGE",
-            cached_repos_time = 1000 * 60 * 25
+            cached_repos_time = 1000 * 60 * 25,
             current_lang = getBrowserLang(),
             beep = new Audio("beep.mp3"),
             locale = {
@@ -92,7 +93,8 @@
                     "more": "Больше ресурсов",
                     "todo": "// TODO добавить статьи",
                     "projects": "Проекты",
-                    "contacts": "Контакты"
+                    "contacts": "Контакты",
+                    "error": "Не удалось загрузить проекты! Попробуйте перезагрузить страницу."
                 },
                 "EN": {
                     "title": "Hello, I'm Acessor",
@@ -107,7 +109,8 @@
                     "more": "More resources",
                     "todo": "// TODO add articles",
                     "projects": "Projects",
-                    "contacts": "Contacts"
+                    "contacts": "Contacts",
+                    "error": "Projects failed to load! Try reloading the page."
                 }
             };
 
@@ -125,51 +128,95 @@
             let langs = Object.keys(locale);
             current_lang = langs[(langs.indexOf(current_lang) + 1) % langs.length];
             updateLanguageInfo();
-            beep.play();
+            const played = beep.play();
+            if (played && played.catch) played.catch(() => {});
         });
 
         /*Dynamically update projects from github api*/
 
-        async function fetchRepositories() {
+        function safeStorageGet(key) {
             try {
-                const resp = await fetch(api_url);
-                const repos = await resp.json();
-                localStorage.setItem(storage_key, JSON.stringify(repos));
-                localStorage.setItem(last_fetched_time, Date.now().toString());
-                return repos;
+                return localStorage.getItem(key);
             } catch (err) {
                 return null;
             }
         }
 
-        function createAboutEntry(url, title, description, stars) {
-            return `<a href="${url}"><div class=\"about_entry\"><h3>${title + " " + stars}★</h3><h5>${description}</h5></div></a>`;
+        function safeStorageSet(key, value) {
+            try {
+                localStorage.setItem(key, value);
+            } catch (err) {}
         }
 
-        async function displayRepositories(repos) {
-            const container = document.getElementById("projects_container")
-            if (!repos) {
-                container.innerHTML += "<br/><h2>Projects failed to load! Try reloading the page.</h2>"
-                return
+        function getCachedRepos() {
+            try {
+                const cached = JSON.parse(safeStorageGet(storage_key));
+                return Array.isArray(cached) ? cached : null;
+            } catch (err) {
+                return null;
+            }
+        }
+
+        async function fetchRepositories() {
+            try {
+                const resp = await fetch(api_url);
+                // GitHub answers rate-limited/unauthenticated blocks with 403 and an
+                // error object instead of the repo array; caching that breaks the page
+                // until the cache window passes, so validate before storing.
+                if (!resp.ok)
+                    throw new Error("GitHub API responded with " + resp.status);
+                const repos = await resp.json();
+                if (!Array.isArray(repos))
+                    throw new Error("Unexpected GitHub API payload");
+                safeStorageSet(storage_key, JSON.stringify(repos));
+                safeStorageSet(last_fetched_key, Date.now().toString());
+                return repos;
+            } catch (err) {
+                console.warn(err);
+                return null;
+            }
+        }
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        function createAboutEntry(url, title, description, stars) {
+            return '<a href="' + escapeHtml(url) + '"><div class="about_entry"><h3>' +
+                escapeHtml(title) + " " + escapeHtml(stars) + '★</h3><h5>' +
+                escapeHtml(description) + "</h5></div></a>";
+        }
+
+        function displayRepositories(repos) {
+            const container = document.getElementById("projects_container");
+            if (!Array.isArray(repos)) {
+                const message = getTranslationForLocale(current_lang, "error") || locale.EN.error;
+                container.insertAdjacentHTML("beforeend", "<br/><h2>" + escapeHtml(message) + "</h2>");
+                return;
             }
             repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
-            repos.forEach((repo, index) => {
+            let entries = "";
+            repos.forEach(repo => {
                 if (!repo.fork && repo.description && repo.description.length > 0 && repo.topics && repo.topics.length > 0) {
-                    container.innerHTML += createAboutEntry(repo.html_url, repo.name, repo.description, repo.stargazers_count)
+                    entries += createAboutEntry(repo.html_url, repo.name, repo.description, repo.stargazers_count);
                 }
-            })
+            });
+            container.insertAdjacentHTML("beforeend", entries);
         }
 
         async function updateRepositories() {
-            const lastFetch = localStorage.getItem(last_fetched_time);
-            const now = Date.now()
-            if (!lastFetch || now - parseInt(lastFetch) >= cached_repos_time) {
-                let reps = await fetchRepositories()
-                await displayRepositories(reps)
-                return
-            }
-            const cached = JSON.parse(localStorage.getItem(storage_key))
-            await displayRepositories(cached)
+            const lastFetch = parseInt(safeStorageGet(last_fetched_key) || "0", 10);
+            const cacheIsFresh = Date.now() - lastFetch < cached_repos_time;
+            let repos = cacheIsFresh ? getCachedRepos() : null;
+            if (!repos)
+                repos = await fetchRepositories();
+            if (!repos)
+                repos = getCachedRepos();
+            displayRepositories(repos);
         }
 
         /*Fancy text typing animation thingy!*/
@@ -190,6 +237,7 @@
 
         async function updateLanguageInfo() {
             if (current_lang in locale) {
+                document.documentElement.lang = current_lang.toLowerCase();
                 // Activate the current language visually
                 let active = document.getElementsByClassName("lang");
                 for (let i = 0; i < active.length; i++)

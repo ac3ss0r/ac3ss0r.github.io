@@ -5,6 +5,12 @@
 
 /* Global stuff */
 
+html {
+    /* Everything sizes in rem/em so the whole console scales with the
+       viewport. 1.25vw = 24px root at 1920px wide*/
+    font-size: clamp(14px, 1.25vw, 48px);
+}
+
 * {
     margin: auto;
     box-sizing: border-box;
@@ -39,8 +45,8 @@ body {
 
 .screen_content {
     background-color: black;
-    font-size: 20px;
-    padding: 30px;
+    font-size: 1.25rem;
+    padding: 1.875rem;
     display: table;
     margin: 0 auto;
     width: 100%;
@@ -50,19 +56,19 @@ body {
 .console_corner {
     text-align: left;
     display: block;
-    padding: 0 65px 0 0;
+    padding: 0 4.0625rem 0 0;
 }
 
 .console_content {
-    padding: 0 20px 0 20px;
-    max-width: 1000px;
+    padding: 0 1.25rem 0 1.25rem;
+    max-width: 62.5rem;
 }
 
 .about_entry {
-    border-radius: 5px;
-    margin-top: 5px;
-    border: 2px solid white;
-    margin: 10px;
+    border-radius: 0.3125rem;
+    margin-top: 0.3125rem;
+    border: 0.125rem solid white;
+    margin: 0.625rem;
     text-align: left;
 }
 
@@ -73,7 +79,7 @@ body {
 .border {
     width: 100%;
     background-color: white;
-    height: 2px;
+    height: 0.125rem;
 }
 
 /* Specific blocks */
@@ -99,7 +105,7 @@ body {
     position: fixed;
     width: 100%;
     height: 100%;
-    border: 30px solid transparent;
+    border: 1.875rem solid transparent;
     border-image-source: url(screen_transparent.png);
     border-image-slice: 30;
     border-image-outset: 0;
